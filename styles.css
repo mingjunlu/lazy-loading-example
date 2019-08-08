@@ -1,0 +1,42 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: rgb(245, 244, 238);
+}
+
+.transparent {
+    opacity: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.picture {
+    flex-basis: 33%;
+    min-height: 250px;
+    padding: 7px 8px;
+    transition: opacity 600ms ease-in;
+}
+
+.picture:hover > img {
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.6);
+}
+
+.img {
+    width: 250px;
+    height: 250px;
+    border-radius: 4px;
+    object-fit: cover;
+    transition: box-shadow 150ms ease-in;
+}
