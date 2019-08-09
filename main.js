@@ -1,7 +1,7 @@
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     const onImgLoad = (event) => {
         const picture = event.target.parentElement
-        picture.classList.remove('transparent')
+        picture.classList.remove('fade-in')
     }
 
     const startLoadingImg = (img) => {
@@ -14,15 +14,14 @@ window.addEventListener('load', () => {
         for (let entry of entries) {
             if (entry.isIntersecting) {
                 observer.unobserve(entry.target)
-                const image = entry.target.firstElementChild
-                startLoadingImg(image)
+                startLoadingImg(entry.target)
             }
         }
     }
 
-    const picturesToLoad = document.querySelectorAll('.picture.transparent')
+    const imagesToLoad = document.querySelectorAll('.img.lazy')
     const watcher = new IntersectionObserver(onEnterView)
-    for (let picture of picturesToLoad) {
-        watcher.observe(picture)
+    for (let image of imagesToLoad) {
+        watcher.observe(image)
     }
 })
