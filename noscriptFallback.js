@@ -1,3 +1,4 @@
-document.documentElement.classList.length > 1
-    ? document.documentElement.classList.remove('no-js')
-    : document.documentElement.removeAttribute('class')
+const { documentElement } = document
+documentElement.classList.length > 1
+    ? documentElement.classList.remove('no-js')
+    : documentElement.removeAttribute('class')

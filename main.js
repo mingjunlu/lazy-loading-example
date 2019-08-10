@@ -1,27 +1,27 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const onImgLoad = (event) => {
+    const triggerFadeInEffect = (event) => {
         const picture = event.target.parentElement
         picture.classList.remove('fade-in')
     }
 
-    const startLoadingImg = (img) => {
+    const loadImage = (img) => {
         img.setAttribute('src', img.dataset.src)
-        img.addEventListener('load', onImgLoad)
         img.removeAttribute('data-src')
+        img.addEventListener('load', triggerFadeInEffect)
     }
 
     const onEnterView = (entries, observer) => {
         for (let entry of entries) {
             if (entry.isIntersecting) {
+                loadImage(entry.target)
                 observer.unobserve(entry.target)
-                startLoadingImg(entry.target)
             }
         }
     }
 
-    const imagesToLoad = document.querySelectorAll('.img.lazy')
     const watcher = new IntersectionObserver(onEnterView)
-    for (let image of imagesToLoad) {
+    const lazyImages = document.querySelectorAll('.img.lazy')
+    for (let image of lazyImages) {
         watcher.observe(image)
     }
 })
