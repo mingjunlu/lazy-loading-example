@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const triggerFadeInEffect = (event) => {
         const picture = event.target.parentElement
         picture.classList.remove('fade-in')
