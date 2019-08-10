@@ -1,13 +1,18 @@
 window.addEventListener('load', () => {
-    const triggerFadeInEffect = (event) => {
-        const picture = event.target.parentElement
-        picture.classList.remove('fade-in')
+    const removeMockup = async (event) => {
+        const mockup = event.target.previousElementSibling
+        const delay = parseFloat(window.getComputedStyle(mockup).transitionDuration) * 1000
+        mockup.classList.remove('loading')
+        mockup.classList.add('fade-out')
+        await new Promise((resolve) => { setTimeout(resolve, delay) })
+        mockup.remove()
     }
 
     const loadImage = (img) => {
+        img.previousElementSibling.classList.add('loading')
         img.setAttribute('src', img.dataset.src)
         img.removeAttribute('data-src')
-        img.addEventListener('load', triggerFadeInEffect)
+        img.addEventListener('load', removeMockup)
     }
 
     const onEnterView = (entries, observer) => {

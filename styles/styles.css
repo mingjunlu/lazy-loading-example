@@ -1,3 +1,8 @@
+@keyframes loading {
+    from { background-position-x: 100%; }
+    to { background-position-x: 0%; }
+}
+
 html {
     box-sizing: border-box;
 }
@@ -8,10 +13,6 @@ html {
 
 body {
     background-color: rgb(245, 244, 238);
-}
-
-.fade-in {
-    opacity: 0;
 }
 
 .container {
@@ -26,7 +27,7 @@ body {
     flex-basis: 33%;
     min-height: 250px;
     padding: 7px 8px;
-    transition: opacity 600ms ease-in;
+    position: relative;
 }
 
 .picture:hover > img {
@@ -41,10 +42,32 @@ body {
     transition: box-shadow 150ms ease-in;
 }
 
-.no-js .fade-in {
-    opacity: 1;
+.mockup {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(
+        -90deg,
+        rgb(236, 236, 236) 0%,
+        rgb(236, 236, 236) 40%,
+        rgb(232, 232, 232) 50%,
+        rgb(236, 236, 236) 60%,
+        rgb(236, 236, 236) 100%
+    );
+    background-repeat: repeat;
+    background-size: 400% 100%;
+    transition: opacity 600ms ease-in;
 }
 
-.no-js .lazy {
+.loading {
+    animation: loading 1.5s ease infinite;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.no-js .lazy,
+.no-js .mockup {
     display: none;
 }
