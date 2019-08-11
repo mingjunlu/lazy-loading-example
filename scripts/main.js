@@ -1,11 +1,9 @@
 window.addEventListener('load', () => {
-    const removeMockup = async (event) => {
+    const removeMockup = (event) => {
         const mockup = event.target.previousElementSibling
-        const delay = parseFloat(window.getComputedStyle(mockup).transitionDuration) * 1000
+        mockup.addEventListener('transitionend', mockup.remove)
         mockup.classList.remove('loading')
         mockup.classList.add('fade-out')
-        await new Promise((resolve) => { setTimeout(resolve, delay) })
-        mockup.remove()
     }
 
     const loadImage = (img) => {
